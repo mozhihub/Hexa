@@ -1,68 +1,72 @@
-/* 1. Body and Background Patterns */
+/* Body & Background Pattern */
 body {
-    background-color: #0b0e14;
-    /* Clean Geometric Dots Pattern */
-    background-image: radial-gradient(#1e293b 1px, transparent 0);
-    background-size: 30px 30px;
+    background-color: #05070a;
     margin: 0;
     overflow: hidden;
+    font-family: 'Exo 2', sans-serif;
+    /* Subtle Blue Grid */
+    background-image: 
+        linear-gradient(rgba(52, 152, 219, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(52, 152, 219, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-/* 2. Top Header Cleanup (Thevai illatha line-ai hide panna) */
-/* Intha selector unga screen-la mela irukira unwanted blue bar-ai hide pannum */
-#overlay.faded, .overlay {
-    display: none !important;
+#canvas {
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(52, 152, 219, 0.2));
+    background: radial-gradient(circle, #111827 0%, #05070a 100%);
 }
 
-/* 3. High Score - Modern & Clean Positioning */
+/* Crystal Glass Scoreboard */
 #highScoreInGameText {
     position: fixed;
-    top: 15px; /* Mela irunthu konjam gap */
+    top: 20px;
     right: 20px;
-    padding: 10px 18px;
-    background: rgba(15, 23, 42, 0.8); /* Glass effect */
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(52, 152, 219, 0.4);
-    border-radius: 12px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     text-align: center;
-    z-index: 999;
-}
-
-#highScoreInGameTextHeader {
-    font-size: 11px;
-    color: #3498db;
-    letter-spacing: 1.5px;
-    margin-bottom: 2px;
+    z-index: 1000;
 }
 
 #currentHighScore {
-    font-size: 24px;
-    color: #ffffff;
+    font-size: 28px;
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
 }
 
-/* 4. Center Hexagon Score - Clarity Improvement */
-/* Center-la varra score-ai innum bright-aa kaata */
-#canvas {
-    filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.15));
+/* 3D Share Button */
+.share-btn {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 25px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.4);
+    transition: 0.3s;
 }
 
-/* 5. Control Icons (Pause/Restart) - Bottom Positioning */
-#pauseBtn {
+.share-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px #3498db;
+}
+
+/* Icons Fix */
+.control-icon {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
+    bottom: 30px;
     width: 55px;
-    height: 55px;
-    z-index: 1000;
-    filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.3));
+    cursor: pointer;
+    z-index: 1001;
+    filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.5));
 }
-
-#restartBtn {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    width: 50px;
-    z-index: 1000;
-}
+#pauseBtn { right: 30px; }
+#restartBtn { left: 30px; }
