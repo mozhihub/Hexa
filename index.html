@@ -6,36 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
     
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-    <link rel="stylesheet" type="text/css" href="logic/custom-style.css">
-    
     <style>
-        /* Game loading-la irukkum pothu canvas theriya */
+        body {
+            background-color: #05070a;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Exo 2', sans-serif;
+            background-image: radial-gradient(rgba(52, 152, 219, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
         #canvas {
             display: block;
             margin: 0 auto;
-            background: #0a0c10;
+            background: #05070a;
+            filter: drop-shadow(0 0 20px rgba(52, 152, 219, 0.2));
+        }
+        #highScoreInGameText {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            border-radius: 15px;
+            text-align: center;
+            z-index: 1000;
+        }
+        #currentHighScore {
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .control-icon {
+            position: fixed;
+            bottom: 30px;
+            width: 55px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        #pauseBtn { right: 30px; }
+        #restartBtn { left: 30px; }
+        
+        /* Error Message Styles */
+        #error-log {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            color: red;
+            font-size: 10px;
+            z-index: 9999;
         }
     </style>
 </head>
 <body>
+    <div id="error-log"></div>
     <canvas id="canvas"></canvas>
     
     <div id='highScoreInGameText'>
-        <div id='highScoreInGameTextHeader'>TOP SCORE</div>
+        <div style="color:#3498db; font-size:10px; letter-spacing:1px;">TOP SCORE</div>
         <div id='currentHighScore'>0</div>
     </div>
 
-    <img id="pauseBtn" src="./images/btn_pause.svg" class="control-icon" style="display:none;"/>
+    <img id="pauseBtn" src="./images/btn_pause.svg" class="control-icon"/>
     <img id='restartBtn' src="./images/btn_restart.svg" class="control-icon" style="display:none;"/>
-
-    <div id="gameoverscreen" style="display:none;">
-        <div id='container'>
-            <div id='gameOverBox'>GAME OVER</div>
-            <div id='cScore'>0</div>
-            <button class="share-btn" onclick="window.open('https://instagram.com/kaviyarasan.1997/')">SHARE SCORE</button>
-        </div>
-    </div>
 
     <script src="vendor/jquery.js"></script>
     <script src="vendor/hammer.min.js"></script>
@@ -47,15 +82,49 @@
     <script src="js/render.js"></script>
     <script src="js/main.js"></script>
     <script src="js/initialization.js"></script>
-    
-    <script src="logic/custom-logic.js"></script>
 
     <script>
-        // Game initialize aagala-na force start panna
+        window.onerror = function(msg, url, line) {
+            document.getElementById('error-log').innerHTML = "Error: " + msg + " at line " + line;
+        };
+
         $(document).ready(function() {
+            console.log("Injecting Crystal Logic...");
+            
+            // Check if Block class is loaded
+            if (typeof Block !== 'undefined') {
+                const originalDraw = Block.prototype.draw;
+                Block.prototype.draw = function() {
+                    ctx.save();
+                    // Glow Effect
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = this.color;
+                    
+                    // 3D Crystal Gradient
+                    let grd = ctx.createLinearGradient(this.x, this.y - 15, this.x, this.y + 15);
+                    grd.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+                    grd.addColorStop(0.3, this.color);
+                    grd.addColorStop(1, 'rgba(0, 0, 0, 0.4)');
+                    
+                    ctx.fillStyle = grd;
+                    originalDraw.apply(this, arguments);
+                    
+                    ctx.shadowBlur = 0;
+                    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+                    ctx.stroke();
+                    ctx.restore();
+                };
+            }
+
+            // Start Game
             if (typeof init === "function") {
-                init();
-                console.log("Game Force Started");
+                try {
+                    init();
+                } catch(e) {
+                    console.error("Init Error: ", e);
+                }
+            } else {
+                console.error("init function not found. Check if main.js is loaded.");
             }
         });
     </script>
