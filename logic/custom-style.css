@@ -1,0 +1,21 @@
+/* Game Canvas-ku neon glow effect */
+#canvas {
+    background-color: #0d1117;
+    box-shadow: 0 0 50px rgba(52, 152, 219, 0.2);
+}
+
+/* UI Elements-ai innum azhagaaka */
+#HIGHSCORE, #highScoreInGameTextHeader {
+    color: #3498db;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.8);
+}
+
+/* Game Over screen-ai blur effect-oda kaata */
+#gameoverscreen {
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(10px);
+    border: 2px solid #3498db;
+    border-radius: 15px;
+}
+
