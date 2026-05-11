@@ -1,108 +1,68 @@
-/* 1. Global Variables for Easy Customization */
-:root {
-    --bg-color: #05070a;
-    --neon-blue: #3498db;
-    --neon-glow: rgba(52, 152, 219, 0.6);
-    --crystal-white: rgba(255, 255, 255, 0.15);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-}
-
-/* 2. Background Geometric Pattern */
+/* 1. Body and Background Patterns */
 body {
-    background-color: var(--bg-color);
+    background-color: #0b0e14;
+    /* Clean Geometric Dots Pattern */
+    background-image: radial-gradient(#1e293b 1px, transparent 0);
+    background-size: 30px 30px;
     margin: 0;
     overflow: hidden;
-    font-family: 'Exo 2', sans-serif;
-    /* Geometric Grid Pattern */
-    background-image: 
-        linear-gradient(rgba(52, 152, 219, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(52, 152, 219, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
 }
 
-/* 3. High Score - Crystal Glassmorphism Look */
+/* 2. Top Header Cleanup (Thevai illatha line-ai hide panna) */
+/* Intha selector unga screen-la mela irukira unwanted blue bar-ai hide pannum */
+#overlay.faded, .overlay {
+    display: none !important;
+}
+
+/* 3. High Score - Modern & Clean Positioning */
 #highScoreInGameText {
     position: fixed;
-    top: 20px;
+    top: 15px; /* Mela irunthu konjam gap */
     right: 20px;
-    padding: 12px 20px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(52, 152, 219, 0.3);
-    border-radius: 15px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 10px 18px;
+    background: rgba(15, 23, 42, 0.8); /* Glass effect */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(52, 152, 219, 0.4);
+    border-radius: 12px;
     text-align: center;
-    z-index: 1000;
+    z-index: 999;
 }
 
 #highScoreInGameTextHeader {
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--neon-blue);
-    text-transform: uppercase;
+    font-size: 11px;
+    color: #3498db;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
 }
 
 #currentHighScore {
-    font-size: 26px;
-    font-weight: bold;
+    font-size: 24px;
     color: #ffffff;
-    text-shadow: 0 0 10px var(--neon-glow);
-}
-
-/* 4. Canvas Glow Effect */
-#canvas {
-    display: block;
-    filter: drop-shadow(0 0 15px rgba(52, 152, 219, 0.2));
-}
-
-/* 5. Share Button - Crystal / Neon Style */
-.share-btn {
-    margin-top: 15px;
-    background: linear-gradient(135deg, var(--neon-blue), #2980b9);
-    border: none;
-    padding: 10px 25px;
-    color: white;
     font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 0 15px var(--neon-glow);
-    transition: all 0.3s ease;
-    border: 1px solid var(--crystal-white);
+    text-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
 }
 
-.share-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 0 25px var(--neon-blue);
-    filter: brightness(1.2);
+/* 4. Center Hexagon Score - Clarity Improvement */
+/* Center-la varra score-ai innum bright-aa kaata */
+#canvas {
+    filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.15));
 }
 
-/* 6. Control Icons (Pause/Restart) */
-#pauseBtn, #restartBtn {
+/* 5. Control Icons (Pause/Restart) - Bottom Positioning */
+#pauseBtn {
     position: fixed;
-    bottom: 30px;
+    bottom: 25px;
+    right: 25px;
     width: 55px;
     height: 55px;
-    cursor: pointer;
     z-index: 1000;
-    transition: transform 0.2s ease;
-    filter: drop-shadow(0 0 8px var(--neon-glow));
+    filter: drop-shadow(0 0 12px rgba(52, 152, 219, 0.3));
 }
 
-#pauseBtn { right: 30px; }
-#restartBtn { left: 30px; }
-
-#pauseBtn:active, #restartBtn:active {
-    transform: scale(0.9);
-}
-
-/* 7. Game Over Screen - Glass Effect */
-#gameoverscreen {
-    background: rgba(0, 0, 0, 0.8) !important;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--neon-blue);
-    border-radius: 20px;
-    color: white;
+#restartBtn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 50px;
+    z-index: 1000;
 }
