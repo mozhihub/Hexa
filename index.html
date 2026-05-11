@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
+    <meta charset="UTF-8">
     <title>Hexa - Neon Crystal Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <link rel="stylesheet" type="text/css" href="logic/custom-style.css">
+    
+    <style>
+        /* Game loading-la irukkum pothu canvas theriya */
+        #canvas {
+            display: block;
+            margin: 0 auto;
+            background: #0a0c10;
+        }
+    </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -16,10 +26,10 @@
         <div id='currentHighScore'>0</div>
     </div>
 
-    <img id="pauseBtn" src="./images/btn_pause.svg" class="control-icon"/>
-    <img id='restartBtn' src="./images/btn_restart.svg" class="control-icon"/>
+    <img id="pauseBtn" src="./images/btn_pause.svg" class="control-icon" style="display:none;"/>
+    <img id='restartBtn' src="./images/btn_restart.svg" class="control-icon" style="display:none;"/>
 
-    <div id="gameoverscreen">
+    <div id="gameoverscreen" style="display:none;">
         <div id='container'>
             <div id='gameOverBox'>GAME OVER</div>
             <div id='cScore'>0</div>
@@ -39,5 +49,15 @@
     <script src="js/initialization.js"></script>
     
     <script src="logic/custom-logic.js"></script>
+
+    <script>
+        // Game initialize aagala-na force start panna
+        $(document).ready(function() {
+            if (typeof init === "function") {
+                init();
+                console.log("Game Force Started");
+            }
+        });
+    </script>
 </body>
 </html>
